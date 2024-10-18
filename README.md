@@ -1,0 +1,1 @@
+# Quordle-script
