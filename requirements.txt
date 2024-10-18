@@ -1,0 +1,9 @@
+selenium
+webdriver-manager
+chromedriver-autoinstaller
+pandas
+bs4
+google-auth
+gspread==3.6.0
+oauth2client
+datetime
