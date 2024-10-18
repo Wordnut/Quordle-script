@@ -9,8 +9,4 @@ def extract_answers(html_content):
 
     answers = [link.text for link in textarea]
 
-    # Print the extracted answers
-    for answer in answers:
-        print(answer)
-
     return (answers)

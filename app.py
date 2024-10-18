@@ -13,22 +13,18 @@ def main(game):
     if game == 'Weekly':
         print(f"{datetime.now().strftime('%D %H:%M:%S')}: Running for Daily and Weekly")
         answers = weekly_answer()
-    # weekly_answers = ["ARBOR", "STARK", "LEAVE", "GOOFY"] # for testing only
 
     elif game == 'Sequence':
         print(f"{datetime.now().strftime('%D %H:%M:%S')}: Running for Sequence")
         answers = sequence_answer()
-    # sequence_answers = ["VOCAL", "CLEAT", "MANOR", "PLAIT"] # for testing only
 
     elif game == 'Chill':
         print(f"{datetime.now().strftime('%D %H:%M:%S')}: Running for Chill")
         answers = chill_answer()
-    # chill_answers = ["VOCAL", "CLEAT", "MANOR", "PLAIT"] # for testing only
 
     elif game == 'Extreme':
         print(f"{datetime.now().strftime('%D %H:%M:%S')}: Running for Extreme")
         answers = extreme_answer()
-        # answers = ["VOCAL", "CLEAT", "MANOR", "PLAIT"] # for testing only
 
     if answers:
         sheet_append(answers, game)

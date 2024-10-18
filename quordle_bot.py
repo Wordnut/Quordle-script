@@ -1,10 +1,9 @@
-# better method for enter_words function
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+from datetime import datetime
 
 def set_max_count(sheet):
     max_counts = {
@@ -33,7 +32,6 @@ def enter_words(driver, sheet, words=None):
     words = words if words is not None else default_words
 
     # Determine the number of words to enter based on the game type
-    # max_count = 10 if sheet == "Sequence" else 9  # old logic - please delete
     max_count = set_max_count(sheet)
     max_attempts = 5  # Maximum number of attempts to avoid infinite loop
 
@@ -51,7 +49,6 @@ def enter_words(driver, sheet, words=None):
 
                 # Simulate pressing 'Enter' to submit the guess
                 body.send_keys(Keys.ENTER)
-                print(f"Entered word: {word}")
 
                 # Wait for the result to be processed
                 time.sleep(2)  # Adjust timing if needed
@@ -64,21 +61,19 @@ def enter_words(driver, sheet, words=None):
                 try:
                     extras = driver.find_element(By.ID, 'quordle-extras')
                     html_content = extras.get_attribute('outerHTML')
-                    print("quordle-extras is visible.")
-                    print(driver.current_url)
                     return html_content
                 except:
                     # "quordle-extras" not visible, continue to next word
                     pass
 
             except Exception as e:
-                print(f"An error occurred while entering word '{word}': {e}")
+                print(f"{datetime.now().strftime('%D %H:%M:%S')}: An error occurred while entering word '{word}': {e}")
                 continue
 
         # Increment attempt count and check again
         attempt += 1
-        print(f"Attempt {attempt} completed. Checking visibility again.")
 
     # If the maximum number of attempts is reached, raise an error
-    print("Maximum number of attempts reached. 'quordle-extras' not found.")
+    print(f"{datetime.now().strftime('%D %H:%M:%S')}: Maximum number of attempts reached. 'quordle-extras' not found.")
+
     return None

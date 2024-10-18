@@ -3,12 +3,11 @@ from quordle_bot import enter_words
 from html_scraper import extract_answers
 from google_sheets import sheet_append
 
-
 def daily_answer():
-    # driver.quit()
-    driver = set_up_driver()
 
     try: 
+        
+        driver = set_up_driver()
         driver.get("https://www.merriam-webster.com/games/quordle/#/")
         
         current_url = driver.current_url
@@ -24,10 +23,6 @@ def daily_answer():
         sheet_append(answers,"Daily")
     
     except Exception as e: 
-        # Handle any potential errors and print them
         print(f"An error occurred: {e}")
-
-    finally:
-        driver.quit()
 
     return answers

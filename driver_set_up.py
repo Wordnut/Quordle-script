@@ -6,13 +6,14 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import os
 import random
+from datetime import datetime
 
 # Automatically install the appropriate chromedriver
 chromedriver_autoinstaller.install()
 
 def set_up_driver():
     
-    print("Calling set_up_driver")
+    print(f"{datetime.now().strftime('%D %H:%M:%S')}: Calling set_up_driver")
     
     chrome_options = Options()
     chrome_options.add_argument('--headless')  # Ensure headless mode is enabled if needed
@@ -52,32 +53,4 @@ def set_up_driver():
       """
     })
 
-    # params = { # ignore this for now. Do NOT use this!
-    #     "latitude": -36.8588062,
-    #     "longitude": 174.3764706,
-    #     "accuracy": 100
-    # }
-    # driver.execute_cdp_cmd("Page.setGeolocationOverride", params)
-
-    # Override the browser's timezone
-    # driver.execute_cdp_cmd(
-    #     'Emulation.setTimezoneOverride',
-    #     {"timezoneId": "Pacific/Auckland"}
-    # )
-
-    print("Driver reset done.")
-
     return driver
-
-# driver = set_up_driver()
-
-# # Automatically install the appropriate chromedriver
-# chromedriver_autoinstaller.install()
-
-# # Set up Chrome options
-# chrome_options = Options()
-# chrome_options.add_argument("--headless")  # Run in headless mode (no GUI)
-
-# # Set up the Chrome driver
-# service = Service()
-# driver = webdriver.Chrome(service=service, options=chrome_options)
